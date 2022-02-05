@@ -1,4 +1,7 @@
 <?php
+/*
+ * Copyright (c) Rafał Mikołajun 2022.
+ */
 
 namespace App\Weather\DataSource\Randomize;
 
