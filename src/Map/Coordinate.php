@@ -5,7 +5,7 @@
 
 namespace App\Map;
 
-final class Coordinates
+final class Coordinate
 {
     public readonly float $lat;
     public readonly float $lng;

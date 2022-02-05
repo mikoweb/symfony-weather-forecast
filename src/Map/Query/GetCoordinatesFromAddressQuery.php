@@ -5,7 +5,7 @@
 
 namespace App\Map\Query;
 
-use App\Map\Coordinates;
+use App\Map\Coordinate;
 use App\Map\GoogleMapsClient;
 use App\Map\Query\Exceptions\NotFoundCoordinatesException;
 use Symfony\Component\PropertyAccess\PropertyAccess;
@@ -19,7 +19,7 @@ final class GetCoordinatesFromAddressQuery
         $this->client = $client;
     }
 
-    public function get(string $address): Coordinates
+    public function get(string $address): Coordinate
     {
         $response = $this->client->request('GET', '/maps/api/place/findplacefromtext/json?' . http_build_query([
             'input' => $address,
@@ -35,6 +35,6 @@ final class GetCoordinatesFromAddressQuery
             throw new NotFoundCoordinatesException("Not found coordinates for $address");
         }
 
-        return new Coordinates(lat: $location['lat'], lng: $location['lng']);
+        return new Coordinate(lat: $location['lat'], lng: $location['lng']);
     }
 }
