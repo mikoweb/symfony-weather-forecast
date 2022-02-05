@@ -5,18 +5,22 @@
 
 namespace App\Map\Query;
 
+use App\Event\Map\FoundCoordinateEvent;
 use App\Map\Coordinate;
 use App\Map\GoogleMapsClient;
 use App\Map\Query\Exceptions\NotFoundCoordinatesException;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 final class GetCoordinatesFromAddressQuery
 {
     private GoogleMapsClient $client;
+    private EventDispatcherInterface $eventDispatcher;
 
-    public function __construct(GoogleMapsClient $client)
+    public function __construct(GoogleMapsClient $client, EventDispatcherInterface $eventDispatcher)
     {
         $this->client = $client;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     public function get(string $address): Coordinate
@@ -35,6 +39,9 @@ final class GetCoordinatesFromAddressQuery
             throw new NotFoundCoordinatesException("Not found coordinates for $address");
         }
 
-        return new Coordinate(lat: $location['lat'], lng: $location['lng']);
+        $coordinate = new Coordinate(lat: $location['lat'], lng: $location['lng']);
+        $this->eventDispatcher->dispatch(new FoundCoordinateEvent($address, $coordinate));
+
+        return $coordinate;
     }
 }
