@@ -28,7 +28,7 @@ final class GetForecastQuery implements GetForecastQueryInterface
         $data = $response->toArray();
 
         return new Forecast(
-            coord: $coord,
+            coord: clone $coord,
             temperature: kelvin_to_celsius($data['main']['temp']),
             pressure: $data['main']['pressure'],
             humidity: $data['main']['humidity'],
