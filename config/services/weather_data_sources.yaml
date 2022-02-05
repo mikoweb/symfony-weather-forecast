@@ -1,0 +1,4 @@
+services:
+    App\Weather\DataSource\OpenWeather\Config:
+        arguments:
+            - '%app_open_weather_api_key%'
