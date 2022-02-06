@@ -1,0 +1,9 @@
+.report-filter {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - #{$app-header-height});
+
+  &__button {
+    margin: auto 15px 15px;
+  }
+}

@@ -1,0 +1,12 @@
+body {
+  --mdc-icon-button-size: 48px;
+}
+
+mwc-icon-button {
+  width: var(--mdc-icon-button-size);
+  height: var(--mdc-icon-button-size);
+}
+
+mwc-icon-button.icon-button-24 {
+  --mdc-icon-button-size: 24px;
+}

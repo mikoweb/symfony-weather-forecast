@@ -1,0 +1,26 @@
+@import "~notyf/notyf.min";
+
+.toastr-message {
+  --toastr-background: #{$clr-grey-800};
+  color: #fff;
+}
+
+.toastr-error {
+  --toastr-background: #{$clr-red-800};
+  color: #fff;
+}
+
+.toastr-success {
+  --toastr-background: #{$clr-green-800};
+  color: #fff;
+}
+
+.toastr-info {
+  --toastr-background: #{$clr-blue-300};
+  color: #fff;
+}
+
+.toastr-warning {
+  --toastr-background: #{$clr-orange-800};
+  color: #fff;
+}

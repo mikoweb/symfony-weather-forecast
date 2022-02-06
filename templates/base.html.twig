@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+<html lang="{{ app.request.locale }}" class="no-js">
+<head>
+    <script>document.querySelector('html').classList.remove('no-js');</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Raport{% endblock %}</title>
+    <link rel="icon" href="{{ asset('favicon.svg') }}">
+    <link href="{{ asset('bundle/style.css') }}" rel="stylesheet">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body{% block body_attrs %}{% endblock %}>
+    <mwc-linear-progress progress="0" wc-ready class="app-progress active" id="appProgress"></mwc-linear-progress>
+    {% block flashes %}
+        {% for message in app.flashes('site_success') %}
+            <app-toastr duration="10000" type="success" dismissible message="{{ message }}"></app-toastr>
+        {% endfor %}
+        {% for message in app.flashes('site_error') %}
+            <app-toastr duration="10000" type="error" dismissible message="{{ message }}"></app-toastr>
+        {% endfor %}
+    {% endblock %}
+    {% block body %}{% endblock %}
+    <script src="{{ asset('bundle/app.min.js') }}"></script>
+    {% block javascripts %}{% endblock %}
+</body>
 </html>

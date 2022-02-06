@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <script>document.querySelector('html').classList.remove('no-js');</script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Index page</title>
+    <link rel="icon" href="./favicon.svg">
+    <link href="../bundle/style.css" rel="stylesheet">
+</head>
+<body>
+    <mwc-linear-progress progress="0" wc-ready class="app-progress active" id="appProgress"></mwc-linear-progress>
+    <app-toastr duration="10000" type="error" dismissible message="Error text"></app-toastr>
+    <mwc-drawer class="app-drawer" id="appDrawer" wc-ready>
+        <section class="app-drawer__body">
+            <div class="app-drawer__heading">
+                <h2 class="app-drawer__title">
+                    Pogoda
+                </h2>
+            </div>
+            <div class="app-drawer__content">
+                <form enctype="multipart/form-data" method="post" class="form-behavior">
+                    <div class="report-filter">
+                        <div class="form-row">
+                            <mwc-textfield
+                                    wc-lazy
+                                    fullwidth
+                                    label="Kraj"
+                                    required
+                                    type="text"
+                                    maxlength="100"
+                                    name="address[country]">
+                            </mwc-textfield>
+                        </div>
+                        <div class="form-row">
+                            <mwc-textfield
+                                    wc-lazy
+                                    fullwidth
+                                    label="Miasto"
+                                    required
+                                    type="text"
+                                    maxlength="100"
+                                    name="address[city]">
+                            </mwc-textfield>
+                        </div>
+                        <div class="form-row report-filter__button">
+                            <mwc-button raised
+                                        label="Zatwierdź"
+                                        type="submit"
+                                        name="ticket[send]"
+                                        wc-lazy>
+                            </mwc-button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <div slot="appContent" class="app-drawer__main">
+            <mwc-top-app-bar class="app-top-bar">
+                <mwc-icon-button role="button"
+                                 aria-label="open menu"
+                                 icon="menu"
+                                 slot="navigationIcon"
+                                 class="app-top-bar__menu-button app-drawer-toggle"
+                                 data-drawer-id="appDrawer">
+                </mwc-icon-button>
+                <header slot="title" class="app-top-bar__content">
+                    <div>
+                        <h1 class="app-top-bar__title">Aktualna prognoza pogody</h1>
+                    </div>
+                    <div class="app-top-bar__actions">
+                        <div class="menu-button" slot="actionItems">
+                            <mwc-icon-button icon="person" class="menu-button__button" wc-lazy></mwc-icon-button>
+                            <mwc-menu class="menu-button__menu" fixed wc-lazy>
+                                <mwc-list-item twoline graphic="avatar" noninteractive>
+                                    <span>User Name</span>
+                                    <span slot="secondary">user@domain.tld</span>
+                                    <mwc-icon slot="graphic" class="inverted">tag_faces</mwc-icon>
+                                </mwc-list-item>
+                                <li divider role="separator"></li>
+                                <mwc-list-item graphic="icon">
+                                    <slot>FAQ</slot>
+                                    <mwc-icon slot="graphic">help_outline</mwc-icon>
+                                </mwc-list-item>
+                                <a href="#">
+                                    <mwc-list-item graphic="icon">
+                                        <slot>
+                                            Sign out
+                                        </slot>
+                                        <mwc-icon slot="graphic">exit_to_app</mwc-icon>
+                                    </mwc-list-item>
+                                </a>
+                            </mwc-menu>
+                        </div>
+                    </div>
+                </header>
+            </mwc-top-app-bar>
+            <main class="main">
+                <section>
+                    <h3 class="h3 panel-title">Prognoza dla Polska Olsztyn</h3>
+                    <app-rwd-table wc-lazy>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-center"></th>
+                                    <th scope="col" class="text-center">Wartość</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="text-center">Temperatura</th>
+                                    <td class="text-center">3.92°C</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-center">Ciśnienie</th>
+                                    <td class="text-center">1025 hPa</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-center">Wilgotność</th>
+                                    <td class="text-center">71%</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-center">Zachmurzenie</th>
+                                    <td class="text-center">52%</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-center">Prędkość wiatru</th>
+                                    <td class="text-center">4.565 m/s</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-center">Prędkość wiatru</th>
+                                    <td class="text-center">4.565 m/s</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" class="text-center">Kierunek wiatru</th>
+                                    <td class="text-center">5°</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </app-rwd-table>
+                </section>
+            </main>
+        </div>
+    </mwc-drawer>
+    <script type="module" src="../src/index.js"></script>
+</body>
+</html>
