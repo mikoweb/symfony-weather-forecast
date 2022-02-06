@@ -39,7 +39,7 @@ final class FindWeatherForecastQuery
         $addressQuery = "$country $city";
         $entity = $this->repository->findOneBy(['addressQuery' => $addressQuery]);
 
-        if (is_null($entity) || new DateTime() < (clone $entity->getCreatedAt())->modify("$cacheTime seconds")) {
+        if (is_null($entity) || new DateTime() > (clone $entity->getUpdatedAt())->modify("$cacheTime seconds")) {
             return $this->findFromApi($addressQuery);
         }
 
