@@ -16,6 +16,7 @@ class AddressType extends AbstractType
             ->add('country', TextType::class, [
                 'required' => true,
                 'label' => 'forms.address.country',
+                'attr' => ['maxlength' => 100],
                 'constraints' => [
                     new Assert\NotBlank(),
                     new Assert\Length(['max' => 100])
@@ -24,6 +25,7 @@ class AddressType extends AbstractType
             ->add('city', TextType::class, [
                 'required' => true,
                 'label' => 'forms.address.city',
+                'attr' => ['maxlength' => 100],
                 'constraints' => [
                     new Assert\NotBlank(),
                     new Assert\Length(['max' => 100])
