@@ -30,6 +30,8 @@ class WeatherController extends AbstractController
                 return $this->render('weather/index.html.twig', [
                     'forecast' => $forecast,
                     'form' => $form->createView(),
+                    'country' => $form->get('country')->getData(),
+                    'city' => $form->get('city')->getData(),
                 ]);
             } catch (NotFoundCoordinatesException $exception) {
                 $this->addFlash('site_error', $translator->trans('weather.message.coordinates_not_found'));
