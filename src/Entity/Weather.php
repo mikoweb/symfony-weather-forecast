@@ -85,12 +85,28 @@ class Weather implements TimestampableInterface
      */
     private int $windDeg;
 
-    public function __construct(string $addressQuery, float $lat, float $lng)
+    public function __construct(
+        string $addressQuery,
+        float $lat,
+        float $lng,
+        float $temperature,
+        int $pressure,
+        int $humidity,
+        int $cloudiness,
+        float $windSpeed,
+        int $windDeg
+    )
     {
         $this->id = Uuid::v4();
         $this->addressQuery = $addressQuery;
         $this->lat = $lat;
         $this->lng = $lng;
+        $this->temperature = $temperature;
+        $this->pressure = $pressure;
+        $this->humidity = $humidity;
+        $this->cloudiness = $cloudiness;
+        $this->windSpeed = $windSpeed;
+        $this->windDeg = $windDeg;
     }
 
     public function getId(): UuidV4|string

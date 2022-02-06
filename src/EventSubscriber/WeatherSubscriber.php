@@ -6,6 +6,7 @@
 namespace App\EventSubscriber;
 
 use App\Event\Weather\DownloadForecastEvent;
+use App\Message\SaveForecastMessage;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Messenger\MessageBusInterface;
 
@@ -27,6 +28,6 @@ final class WeatherSubscriber implements EventSubscriberInterface
 
     public function onDownloadForecast(DownloadForecastEvent $event): void
     {
-        // TODO save forecast to db
+        $this->bus->dispatch(new SaveForecastMessage($event->forecast, $event->queryAddress));
     }
 }
