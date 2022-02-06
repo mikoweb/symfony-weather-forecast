@@ -1,0 +1,11 @@
+forms:
+    address:
+        country: Kraj
+        city: Miasto
+        submit: Zatwierdź
+
+weather:
+    message:
+        coordinates_not_found: Nie znaleziono współrzędnych.
+        http_exception: Nie można pobrać prognozy pogody.
+        general_error: Wystąpił nieznany błąd.

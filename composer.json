@@ -62,7 +62,10 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/"
-        }
+        },
+        "files": [
+            "src/Units/Temperature/kelvin_to_celsius.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

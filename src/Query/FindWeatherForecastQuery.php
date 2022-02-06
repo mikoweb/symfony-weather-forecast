@@ -12,6 +12,7 @@ use App\Weather\ForecastQueryAggregationFactory;
 use App\Weather\FromEntityWeatherConverter;
 use DateTime;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use function Symfony\Component\String\u;
 
 final class FindWeatherForecastQuery
 {
@@ -36,7 +37,8 @@ final class FindWeatherForecastQuery
     public function find(string $country, string $city): ForecastInterface
     {
         $cacheTime = (int) $this->parameterBag->get('app_weather_forecast_cache_time');
-        $addressQuery = "$country $city";
+        $addressQuery = ((string) u($country)->title(true)->trim()) . ' ' .
+            ((string) u($city)->title(true)->trim());
         $entity = $this->repository->findOneBy(['addressQuery' => $addressQuery]);
 
         if (is_null($entity) || new DateTime() > (clone $entity->getUpdatedAt())->modify("$cacheTime seconds")) {
